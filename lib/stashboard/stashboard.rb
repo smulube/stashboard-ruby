@@ -18,10 +18,17 @@ module Stashboard
   
     # Gets a list of all services currently managed by the Stashboard instance
     # 
-    # @return [Array] an array of service detail hashes
+    # @return [Hash] containing an array of service detail hashes, or an error message
     def services
-      response = @client.get("/api/v1/services")
-      return JSON.parse(response.body)
+      response = JSON.parse(@client.get("/api/v1/services").body)
+      return response["services"] || response
+    end
+
+    # Gets an array of service ids. This is just for convenience
+    #
+    # @return [Array] containing just the service ids
+    def service_ids
+      services.collect { |s| s["id"] }
     end
   
     # Get the details of an individual service managed by the Stashboard instance.
@@ -68,18 +75,18 @@ module Stashboard
     # 
     # @return [Array] an array of the level strings
     def levels
-      response = @client.get("/api/v1/levels")
-      return JSON.parse(response.body)["levels"]
+      response = JSON.parse(@client.get("/api/v1/levels").body)
+      return response["levels"] || response
     end
   
     # Get events for the specified service.
     #
     # @param [String] the service id we wer interested in
     # @param [Hash] optional hash that restricts the returned events. Only keys that do anything are "start" and "end" which can be used to constrain the time period from which events will be returned.
-    # @return [Array] an array of event hashes describing events for the service
+    # @return [Hash] an array of event hashes describing events for the service, or an error hash
     def events(service_id, options = {})
-      response = @client.get("/api/v1/services/#{service_id}/events", options)
-      return JSON.parse(response.body)
+      response = JSON.parse(@client.get("/api/v1/services/#{service_id}/events", options).body)
+      return response["events"] || response
     end
   
     # Create an event of a service. Events are the main way we
@@ -125,8 +132,15 @@ module Stashboard
     #
     # @return [Array] an array of status hashes, each hash is an individual status
     def statuses
-      response = @client.get("/api/v1/statuses")
-      return JSON.parse(response.body)
+      response = JSON.parse(@client.get("/api/v1/statuses").body)
+      return response["statuses"] || response
+    end
+
+    # Convenience method to return just the status ids.
+    #
+    # @return [Array] an array of just the status ids
+    def status_ids
+      statuses.collect { |s| s["id"] }
     end
   
     # Get the details of the individual status.
@@ -155,8 +169,8 @@ module Stashboard
     #
     # @return [Array] array of image hashes
     def status_images
-      response = @client.get("/api/v1/status-images")
-      return JSON.parse(response.body)["images"]
+      response = JSON.parse(@client.get("/api/v1/status-images").body)
+      return response["images"] || response
     end
   end
 end
