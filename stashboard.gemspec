@@ -6,13 +6,17 @@ Gem::Specification.new do |s|
   s.name        = "stashboard"
   s.version     = Stashboard::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["TODO: Write your name"]
-  s.email       = ["TODO: Write your email address"]
-  s.homepage    = "http://rubygems.org/gems/stashboard"
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.authors     = ["Sam Mulube"]
+  s.email       = ["sam@connectedenvironments.com"]
+  s.homepage    = "http://github.com/smulube/stashboard"
+  s.summary     = %q{Library for interacting with the Stashboard api.}
+  s.description = %q{Little library written to make interacting with the stashboard api a bit easier}
 
   s.rubyforge_project = "stashboard"
+  s.rubygems_version = ">= 1.3.6"
+
+  s.add_dependency('yajl-ruby', '>= 0.8.1')
+  s.add_dependency('oauth', '>= 0.4.4')
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
