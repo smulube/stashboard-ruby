@@ -1,0 +1,20 @@
+PATH
+  remote: .
+  specs:
+    stashboard (0.0.1)
+      oauth (>= 0.4.4)
+      yajl-ruby (>= 0.8.1)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    oauth (0.4.4)
+    yajl-ruby (0.8.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  oauth (>= 0.4.4)
+  stashboard!
+  yajl-ruby (>= 0.8.1)
