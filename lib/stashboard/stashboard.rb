@@ -132,7 +132,7 @@ module Stashboard
     # Get the details of the individual status.
     #
     # @param [String] the id of the status
-    # @returns [Hash] hash containing the status details
+    # @return [Hash] hash containing the status details
     def status(status_id)
       response = @client.get("/api/v1/statuses/#{status_id}")
       return JSON.parse(response.body)
@@ -143,8 +143,8 @@ module Stashboard
     #
     # @param [String] the name of this status
     # @param [String] description of the status
-    # @level [String] level string. Must be one of the levels returned from #levels
-    # @image [String] name of an image to use for this status. The complete list of images can be retrieved using #status_images, and this value should just be the image name without the directory name or the file extension.
+    # @param [String] level string. Must be one of the levels returned from #levels
+    # @param [String] name of an image to use for this status. The complete list of images can be retrieved using #status_images, and this value should just be the image name without the directory name or the file extension.
     # @return [Hash] hash containing the created statuses details
     def create_status(name, description, level, image)
       response = @client.post("/api/v1/statuses", { "name" => name, "description" => description, "level" => level, "image" => image })
