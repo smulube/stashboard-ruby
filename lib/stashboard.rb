@@ -1,0 +1,3 @@
+module Stashboard
+  # Your code goes here...
+end
