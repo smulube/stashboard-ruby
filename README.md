@@ -13,7 +13,7 @@ simplifies interacting with it from Ruby.
 
 # Usage
 
-    stashboard = Stashboard.new("https://your-app.appspot.com", "<stashboard_oauth_token>", "<stashboard_oauth_secret>")
+    stashboard = Stashboard::Stashboard.new("https://your-app.appspot.com", "<stashboard_oauth_token>", "<stashboard_oauth_secret>")
 
     # get all services
     stashboard.services
